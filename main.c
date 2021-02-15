@@ -45,9 +45,18 @@ int scanStep()
     }
     //Проверка на наличие типа фигуры в начале строки.
     if (step[0] == 'K' || step[0] == 'Q' || step[0] == 'R' || step[0] == 'B'
-        || step[0] == 'N' || step[0] == 'P' || step[0] == 'k' || step[0] == 'q'
-        || step[0] == 'r' || step[0] == 'b' || step[0] == 'n'
-        || step[0] == 'p') {
+        || step[0] == 'N' || step[0] == 'P') {
+        //Проверка соответствия фигуры.
+        if (!(step[0] == board[8 - step[2] + 48][step[1] - 97]
+              || step[0] == board[8 - step[2] + 48][step[1] - 97] - 32)) {
+            return 2;
+        }
+        //Проверка типа хода.
+        if (!((board[8 - step[5] + 48][step[4] - 97] == ' ' && step[3] == '-')
+              || (board[8 - step[5] + 48][step[4] - 97] != ' '
+                  && step[3] == 'x'))) {
+            return 3;
+        }
         //Проверка диапазона.
         if ((step[4] >= 97 && step[4] <= 104)
             && (step[5] >= 49 && step[5] <= 56)) {
@@ -112,6 +121,12 @@ int scanStep()
         } else
             return 1;
     } else {
+        //Проверка типа хода.
+        if (!((board[8 - step[4] + 48][step[3] - 97] == ' ' && step[2] == '-')
+              || (board[8 - step[4] + 48][step[3] - 97] != ' '
+                  && step[2] == 'x'))) {
+            return 3;
+        }
         //Проверка диапазона.
         if ((step[3] >= 97 && step[3] <= 104)
             && (step[4] >= 49 && step[4] <= 56)) {
@@ -189,9 +204,18 @@ int main()
             printBoard();
             return 0;
         }
+        //Вывод ошибки и возвращение значения.
         if (result == 1) {
             printf("\nВыход за пределы доски.\n");
             return 1;
+        }
+        if (result == 2) {
+            printf("\nФигура не соответствует фактической.\n");
+            return 2;
+        }
+        if (result == 3) {
+            printf("\nНеверный тип хода.\n");
+            return 3;
         }
     }
 }
