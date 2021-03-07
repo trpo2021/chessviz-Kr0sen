@@ -2,3 +2,6 @@
 main
 *.o
 .vscode
+*.d
+bin/chessviz
+*.a
