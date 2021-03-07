@@ -1,5 +1,4 @@
 #include "checks.h"
-#include "constants.h"
 
 int check_beginning(char step[STEPMAX])
 {

@@ -1,5 +1,4 @@
 #include "fill_board_std.h"
-#include "constants.h"
 
 void fill_board_std(char boardlocale[BOARDSIZE][BOARDSIZE])
 {

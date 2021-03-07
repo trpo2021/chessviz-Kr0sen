@@ -1,5 +1,4 @@
 #include "board_print_plain.h"
-#include "constants.h"
 #include <stdio.h>
 
 void print_board(char boardlocale[BOARDSIZE][BOARDSIZE])
