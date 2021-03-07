@@ -1,7 +1,7 @@
-#include "board_print_plain.h"
-#include "constants.h"
-#include "fill_board_std.h"
-#include "scan.h"
+#include <libchessviz/board_print_plain.h>
+#include <libchessviz/constants.h>
+#include <libchessviz/fill_board_std.h>
+#include <libchessviz/scan.h>
 #include <stdio.h>
 
 int main()
