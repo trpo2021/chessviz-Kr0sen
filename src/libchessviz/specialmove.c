@@ -1,4 +1,5 @@
 #include "specialmove.h"
+#include <stdlib.h>
 
 void do_ep(char boardlocale[BOARDSIZE][BOARDSIZE], char step[STEPMAX], int tib)
 {
