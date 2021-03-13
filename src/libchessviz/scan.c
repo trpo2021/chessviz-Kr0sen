@@ -14,18 +14,18 @@ int scan_step(char boardlocale[BOARDSIZE][BOARDSIZE])
     scanf("%s", step);
     //Преждевременное завершение программы.
     if (step[0] == '0')
-        return 999;
+        return EXIT_SUCCESS;
     //Проверка на наличие типа фигуры в начале строки.
     type_in_beginning = check_beginning(step);
     //Проверка диапазона.
     if (check_range(step, type_in_beginning))
-        return 1;
+        return ERROR_OUT_OF_RANGE;
     //Проверка соответствия фигуры.
     if (type_in_beginning && check_figure(boardlocale, step))
-        return 2;
+        return ERROR_DIFFERENT_FIGURES;
     //Проверка типа хода.
     if (check_move_type(boardlocale, step, type_in_beginning))
-        return 3;
+        return ERROR_WRONG_MOVE_TYPE;
     //Перемещение фигуры.
     figure_make_move(boardlocale, step, type_in_beginning);
     //Взятие на проходе.
@@ -34,8 +34,8 @@ int scan_step(char boardlocale[BOARDSIZE][BOARDSIZE])
     transform(boardlocale, step, type_in_beginning);
     //Мат.
     if (step[5 + type_in_beginning] == '#')
-        return 999;
+        return EXIT_SUCCESS;
     //Рокировка.
     castling(boardlocale, step, type_in_beginning);
-    return 0;
+    return CONTINUE_GAME;
 }

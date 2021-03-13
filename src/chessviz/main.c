@@ -12,22 +12,21 @@ int main()
     while (1) {
         print_board(board);
         result = scan_step(board);
-        if (result == 999) { //Завершение.
+        if (result == EXIT_SUCCESS) {
             print_board(board);
-            return 0;
+            return EXIT_SUCCESS;
         }
-        //Вывод ошибки и возвращение значения.
-        if (result == 1) {
+        if (result == ERROR_OUT_OF_RANGE) {
             printf("\nВыход за пределы доски.\n");
-            return 1;
+            return ERROR_OUT_OF_RANGE;
         }
-        if (result == 2) {
+        if (result == ERROR_DIFFERENT_FIGURES) {
             printf("\nФигура не соответствует фактической.\n");
-            return 2;
+            return ERROR_DIFFERENT_FIGURES;
         }
-        if (result == 3) {
+        if (result == ERROR_WRONG_MOVE_TYPE) {
             printf("\nНеверный тип хода.\n");
-            return 3;
+            return ERROR_WRONG_MOVE_TYPE;
         }
     }
 }
